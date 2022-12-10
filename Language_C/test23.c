@@ -1,56 +1,83 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <malloc.h>
 
 int main()
 {
 	int N, i, min, j;
-	int **mas;
+	int **arr;
 	int *size;
 	
-
 	scanf("%d", &N);
 
-
-	mas = (int**)malloc(sizeof(int*) *N);
-
-	size = (int*)malloc(sizeof(int) * N);
-
-	i = 0;
-	while (i < N)
-	{	
-		scanf("%d", &size[i]);
-		mas[i] = (int*)malloc(sizeof(int) * size[i]);
-		j = 0;
-		while (j < size[i]) 
-		{
-			scanf("%d", &mas[i][j]);
-			j++;
-		}
-		i++;
-	}
-
-	i = 0;
-	while (i < N)
+	if (N > 1 && N < 100) 
 	{
-		j = 0;
-		min = mas[i][j];
-		while (j < size[i]) 
+		arr = (int**)malloc(sizeof(int*)*N);
+
+		size = (int*)malloc(sizeof(int)*N);
+
+		i = 0;
+		while (i < N)
 		{
-			if (mas[i][j] < min)
+			scanf("%d", &size[i]);
+
+			if (size[i] > 1 && size[i] < 100) 
 			{
-				min = mas[i][j];
+				arr[i] = (int*)malloc(sizeof(int)*size[i]);
+				j = 0;
+				while (j < size[i])
+				{
+					scanf("%d", &arr[i][j]);
+					j++;
+				}
+				i++;
 			}
-			j++;
+			else 
+			{
+				printf("Restart the program, enter a number in the desired range!");
+				exit(EXIT_SUCCESS);
+			}
 		}
-		i++;
-		if (j < i)
+
+		i = 0;
+		while (i < N)
 		{
-			printf("%d ", min);
+			j = 0;
+			min = arr[i][j];
+			while (j < size[i])
+			{
+				if (arr[i][j] < min)
+				{
+					min = arr[i][j];
+				}
+				j++;
+			}
+			i++;
+
+			if (i < size[i])
+			{
+				printf("%d ", min);
+			}
+			else
+			{
+				printf("%d", min);
+			}
 		}
-		else
+
+		free(size);
+		i = 0;
+		while (i < N)
 		{
-			printf("%d", min);
+			free(arr[i]);
+			i++;
 		}
+		free(arr);
 	}
+	else 
+	{
+		printf("Restart the program, enter a number in the desired range!");
+		exit(EXIT_SUCCESS);
+	}
+
 	return 0;
 }
