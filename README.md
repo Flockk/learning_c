@@ -1,1 +1,1 @@
-New department at the University
+Цифровая кафедра 
