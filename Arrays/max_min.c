@@ -46,6 +46,6 @@ int main()
 		i++;
 	}
 	avg = avg / (M * N);
-	printf("max = %.4f, min = %.4f, avg = %.4f \n", max, min, avg);
+	printf("%.4f %.4f %.4f \n", max, min, avg);
 	return 0;
 }
